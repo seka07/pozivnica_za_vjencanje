@@ -47,7 +47,7 @@
                             <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z"/>
                             <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
                         </svg>
-                        <a href="https://maps.app.goo.gl/WmY5ZKxFyreX5DrH9">Ulica Pobijenih Franjevaca, Svadbeni salon Jabuka</a>
+                        <a href="https://maps.app.goo.gl/WmY5ZKxFyreX5DrH9">Svadbeni salon Jabuka</a>
                     </div>
                 </div>
 
@@ -162,7 +162,7 @@
         const brojGostijuSelect = document.getElementById('brojGostiju');
         const gostiDiv = document.getElementById('gostiDiv');
 
-        // Fade-in
+        // Fade-in animacija
         const fadeElems = document.querySelectorAll('.fade-in-right');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -173,7 +173,7 @@
         }, { threshold: 0.1 });
         fadeElems.forEach(el => observer.observe(el));
 
-        // Prikaži broj gostiju ako je "Da"
+        // Prikaz broja gostiju ako je "Da"
         daNeSelect.addEventListener('change', function() {
             if (this.value === 'Da') {
                 brojGostijuDiv.style.display = 'block';
@@ -198,20 +198,17 @@
             }
         });
 
-        // Slanje forme s preusmjeravanjem
+        // Slanje forme s redirectom
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(form);
+            
             try {
-                const response = await fetch(form.action, { method: 'POST', body: formData });
-                if (response.ok) {
-                    window.location.href = 'zahvalnica.html';
-                } else {
-                    alert('Došlo je do greške pri slanju. Pokušajte ponovno.');
-                }
+                await fetch(form.action, { method: 'POST', body: formData });
+                window.location.href = 'zahvalnica.html';
             } catch (error) {
                 console.error(error);
-                alert('Došlo je do greške pri slanju. Pokušajte ponovno.');
+                window.location.href = 'zahvalnica.html';
             }
         });
     </script>
