@@ -19,63 +19,16 @@
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="logo-srce.png" />
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <style>
-        /* Osnovni stilovi za paralelno prikazivanje */
-        .invitation-wrapper {
-            padding: 20px;
-        }
-
-        .invitation-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            gap: 20px;
-        }
-
-        .rose-container {
-            flex: 0 0 40%;
-        }
-
-        .rose-container img {
-            width: 100%;
-            height: auto;
-        }
-
-        .text-container {
-            flex: 0 0 60%;
-        }
-
-        /* Fade-in animacija */
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(20px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Ograničenje širine forme */
-        form input, form select, form textarea {
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <div class="text-center invitation-wrapper">
-        <div class="invitation-row">
-            <!-- Slika -->
-            <div class="rose-container">
+        <div class="row d-flex flex-row">
+            <div class="rose-container col-4">
                 <img src="ruze6.png" alt="ruže" class="rose-image">
             </div>
 
-            <!-- Tekst -->
-            <div class="text-container">
-                <h1 class="allura-regular fade-in-right">Anamarija<br>&<br>Dalibor</h1>
+            <div class="container text-container col-8">
+                <h1 class="allura-regular fade-in-right">Anamarija</br> & </br> Dalibor</h1>
                 <div class="allura-regular fade-in-right"><h2>S radošću Vas pozivamo na naše vjenčanje</h2></div>
                 
                 <div class="date fade-in-right">
@@ -94,7 +47,7 @@
                             <path fill-rule="evenodd" d="M3.1 11.2a.5.5 0 0 1 .4-.2H6a.5.5 0 0 1 0 1H3.75L1.5 15h13l-2.25-3H10a.5.5 0 0 1 0-1h2.5a.5.5 0 0 1 .4.2l3 4a.5.5 0 0 1-.4.8H.5a.5.5 0 0 1-.4-.8z"/>
                             <path fill-rule="evenodd" d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999z"/>
                         </svg>
-                        <a href="https://maps.app.goo.gl/WmY5ZKxFyreX5DrH9">Ulica Pobijenih Franjevaca, Svadbeni salon Jabuka</a>
+                        <a href="https://maps.app.goo.gl/WmY5ZKxFyreX5DrH9">Svadbeni salon Jabuka</a>
                     </div>
                 </div>
 
@@ -209,7 +162,7 @@
         const brojGostijuSelect = document.getElementById('brojGostiju');
         const gostiDiv = document.getElementById('gostiDiv');
 
-        // Fade-in
+        // Fade-in animacija
         const fadeElems = document.querySelectorAll('.fade-in-right');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -220,7 +173,7 @@
         }, { threshold: 0.1 });
         fadeElems.forEach(el => observer.observe(el));
 
-        // Prikaži broj gostiju ako je "Da"
+        // Prikaz broja gostiju ako je "Da"
         daNeSelect.addEventListener('change', function() {
             if (this.value === 'Da') {
                 brojGostijuDiv.style.display = 'block';
@@ -245,20 +198,17 @@
             }
         });
 
-        // Slanje forme s preusmjeravanjem
+        // Slanje forme s redirectom
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(form);
+            
             try {
-                const response = await fetch(form.action, { method: 'POST', body: formData });
-                if (response.ok) {
-                    window.location.href = 'zahvalnica.html';
-                } else {
-                    alert('Došlo je do greške pri slanju. Pokušajte ponovno.');
-                }
+                await fetch(form.action, { method: 'POST', body: formData });
+                window.location.href = 'zahvalnica.html';
             } catch (error) {
                 console.error(error);
-                alert('Došlo je do greške pri slanju. Pokušajte ponovno.');
+                window.location.href = 'zahvalnica.html';
             }
         });
     </script>
