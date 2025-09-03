@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <!-- koristi isti CSS kao glavna stranica -->
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <title>Hvala!</title>
+</head>
+<body>
+
+<div class="text-center invitation-wrapper">
+    <div class="row d-flex flex-row">
+        <div class="rose-container col-4">
+            <img src="ruze6.png" alt="ruže" class="rose-image">
+        </div>
+        <div class="container text-container col-8">
+            <h1 class="allura-regular fade-in-right">Hvala!</h1>
+            <div class="allura-regular fade-in-right">
+                <h2>Vaš odgovor je uspješno poslan</h2>
+            </div>
+            <div class="cinzel-medium fade-in-right">
+                <p>Veselimo se vašem dolasku i radujemo se što ćete biti s nama na našem vjenčanju.</p>
+            </div>
+            <div class="cinzel-medium fade-in-right">
+                <p>– Anamarija & Dalibor</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const fadeElems = document.querySelectorAll('.fade-in-right');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElems.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
